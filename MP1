@@ -1,0 +1,204 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+//Declaration of Arrays	
+	string studentList[51];
+	int individualGrades[51][11];
+	int groupGrades[51][11];
+	int majorExams[51][4];
+	int quizGrades[51][11];
+//Declaration for Sums of Grades
+	int totalIndGrade;
+	int totalGroupGrade;
+	int totalQuizGrade;
+	int totalMajorGrade;
+//List for Total Grades and Array for Total Grades
+	int totalGradeList[51][1];
+	int totalGrade;
+	
+// START HERE
+// Outer Loop: Student Name
+	for(int j = 1 ; j <= 51; j++)
+	{
+		
+	cout << "Please input student name: ";
+	
+	cin >> studentList[j];
+
+		// Loop for Individual Grade
+		for(int i = 1; i < 11; i++)
+		{
+			cout << "Please input grade for " << studentList[j] << " #" << i << " INDIVIDUAL Reports (100 points): " ;
+			cin >> individualGrades[j][i];
+			
+		}
+		cout <<endl;
+		// Loop for Group Grade
+		for(int i = 1; i < 11; i++)
+		{
+			cout << "Please input grade for " << studentList[j] << " #" << i << " GROUP Reports (100 points): " ;
+			cin >> groupGrades[j][i];
+		}	
+		cout <<endl;
+		//Loop for Quiz
+		for(int i = 1; i <3; i++)
+		{
+			cout << "Please input grade for " << studentList[j] << " #" << i << " QUIZ (100 points): "  ;
+			cin >> quizGrades[j][i];
+		}
+		cout <<endl;
+		//Loop For Major Exams
+	for(int i = 1; i < 3; i++)
+		{
+			cout << "Please input grade for " << studentList[j] << " #" << i << " PRELIM EXAM (30 points & 70 points respectively): "  ;
+			cin >> majorExams[j][i];
+			
+			if(majorExams[j][1] > 30)
+			{
+				cout << "INVALID INPUT! This exam is only 30 points."<<endl;
+				cin >> majorExams[j][1];
+			}
+			
+			if(majorExams[j][2] > 70)
+			{
+				cout << "INVALID INPUT! This exam is only 70 points."<<endl;
+				cin >> majorExams[j][2];
+			}
+		}
+		
+		for(int i = 3; i < 5; i++)
+		{
+			cout << "Please input grade for " << studentList[j] << " #" << i << " FINAL EXAM (30 points & 70 points respectively): "  ;
+			cin >> majorExams[j][i];
+			
+			if(majorExams[j][3] > 30)
+			{
+				cout << "INVALID INPUT! This exam is only 30 points."<<endl;
+				cin >> majorExams[j][3];
+			}
+			
+			if(majorExams[j][4] > 70)
+			{
+				cout << "INVALID INPUT! This exam is only 70 points."<<endl;
+				cin >> majorExams[j][4];
+			}	
+
+		}
+			
+		cout <<endl;
+		
+		cout << "Will now calculate for total grade..." << endl;
+		cout << "Please be guided by the grade breakdown below: " <<endl;
+		cout << endl;
+		// BREAKDOWN OF MY GRADES
+		cout << "Individual Reports(100 points each)--- 15%" <<endl;
+		cout << "Group Reports(100 points each)--- 25%" <<endl;
+		cout << "Quizzes(100 points each) --- 20%" <<endl;
+		cout << "Major Examinations(100 points( /30, /70)) --- 40%" <<endl;
+		
+		cout <<endl;
+		// START OF COMPUTATIONS
+		cout << "TOTAL SCORE for ALL INDIVIDUAL reports: ";
+		//LOOP FOR SUM OF INDIVIDUAL GRADES
+		for(int i = 1; i < 11; i++)
+		{
+			totalIndGrade+=individualGrades[j][i];
+		}
+		cout << totalIndGrade << endl;
+		
+		// LOOP FOR SUM OF ALL GROUP REPORTS
+		cout << "TOTAL SCORE for ALL GROUP reports: ";
+		
+		for(int i = 1; i < 11; i++)
+		{
+			totalGroupGrade+=groupGrades[j][i];
+		}
+		cout << totalGroupGrade -1 <<endl;
+		// LOOP FOR SUM OF ALL QUIZZES
+		cout << "TOTAL SCORE for ALL QUIZZES: ";
+		for(int i = 1; i < 3; i++)
+		{
+			totalQuizGrade+=quizGrades[j][i];
+		}
+		cout << totalQuizGrade <<endl;
+		//SUM FOR ALL MAJOR EXAM PRACTICAL AND WRITTEN		
+			cout << "TOTAL SCORE for ALL MAJOR EXAMS: ";
+			totalMajorGrade = majorExams[j][1] + majorExams[j][2] + majorExams[j][3] + majorExams[j][4];
+			
+		cout << totalMajorGrade<<endl;	
+		cout << studentList[j] <<"'s overall grade would be: ";
+		//SUM FOR TOTAL GRADE
+		totalGrade = ((totalIndGrade/10)*0.15) + ((totalGroupGrade/10)*0.25 ) + ((totalQuizGrade/2)*0.20 ) + ((totalMajorGrade/2)*0.40);
+		totalGradeList[j][0] = totalGrade;
+		cout << totalGradeList[j][0];
+		cout << endl;
+		// IF STATTEMENTS FOR TOTAL GRADE FOR GPA
+		if(totalGradeList[j][0] <= 100 && totalGradeList[j][0] >= 95.57) 
+		{
+			cout << "1.00" << endl;
+		}
+		else if (totalGradeList[j][0] <= 95.56 && totalGradeList[j][0] >= 86.69)
+		{
+			cout << "1.25" << endl;
+		}
+		else if(totalGradeList[j][0] <= 91.11 && totalGradeList[j][0] >= 86.68)
+		{
+			cout << "1.50" << endl;
+		}
+		else if(totalGradeList[j][0] <= 86.67 && totalGradeList[j][0] >= 82.23)
+		{
+			cout << "1.75" << endl;
+		}
+		else if(totalGradeList[j][0] <= 82.22 && totalGradeList[j][0] >= 77.79)
+		{
+			cout << "2.00" << endl;
+		}
+		else if(totalGradeList[j][0] <= 77.78 && totalGradeList[j][0] >= 73.34)
+		{
+			cout << "2.25" << endl;
+		}
+		else if(totalGradeList[j][0] <= 73.33 && totalGradeList[j][0] >= 68.90)
+		{
+			cout <<"2.50"<< endl;
+		}
+		else if(totalGradeList[j][0] <= 68.89 && totalGradeList[j][0] >= 64.45)
+		{
+			cout << "2.75" <<endl;
+		}
+		else if(totalGradeList[j][0] <= 64.44 && totalGradeList[j][0] >= 60.00)
+		{
+			cout << "3.00" << endl;
+		}
+		else if (totalGradeList[j][0] < 60.00)
+		{
+			cout << "5.00" <<"                " <<"Failed" << endl;
+		}
+	}
+	
+	cout << endl;
+	
+	// Sorting
+	for(int k=1; k < 51; k++)
+	{
+		if(totalGradeList[k][0] > totalGradeList[k + 1][0])
+		{
+			int temp = totalGradeList[k][0];
+			totalGradeList[k][0]= totalGradeList[k][1];
+			totalGradeList[k][1]=temp; 
+		}
+	}
+	// cout 
+	for(int x=1; x < 51; x++)
+	{
+		cout << "Top" << "#" << totalGradeList[x][1];
+	}
+	
+	
+
+_getch();
+return 0;	
+}
